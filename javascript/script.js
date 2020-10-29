@@ -78,7 +78,7 @@ function nextQual(){ //Runs on "Next Qualification" click
 	qualCounter++;
 	if(qualCounter == 4){ //If the number of qualifications is reached, change to next employee
 		var button = $("#currentQuals button");
-		button.text("Next Applicant");
+		button.text( strings["next_applicant"] );
 		button.attr("onclick", "nextApplicant();");
 	}
 }
@@ -96,13 +96,13 @@ function nextApplicant(){ //Runs on "Next Employee" click
 	$("#currentQuals h4").text("");
 	qualCounter = 0;
 	var button = $("#currentQuals button");
-	button.text("Next Qualification");
+	button.text( strings["next_qualification"] );
 	button.attr("onclick", "nextQual();");
 
 	currentPlayer++;
 	//Gets the next qualification (if not finished with turn)
 	if(currentPlayer < numPlayers){
-		$("#currentQuals h3").text("Applicant: " + pName(currentPlayer));
+		$("#currentQuals h3").text( strings["applicant"] + ": " + pName(currentPlayer));
 		//quickAnim("#currentQuals h3", "bounce");
 		nextQual();
 		return;
