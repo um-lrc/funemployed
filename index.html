@@ -1,0 +1,306 @@
+<html>
+
+<head>
+	<title>FUNemployed</title>
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+	  crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+	<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+  integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+  crossorigin="anonymous">
+	<link rel="stylesheet" href="styles/timer.css">
+	<link rel="stylesheet" href="styles/style.css">
+</head>
+<!-- ***************** -->
+<body>
+<div class="container">
+
+
+	<div id="MainPage" class="flex-container" style="padding-top: 50px">
+		<div class="title"><h1><span data-localize="app_welcome">Welcome to </span><br><span data-localize="app_name">FUNemployed<span></h1></div>
+		<div class="select"><p><span data-localize="player_count">How many players?</span></p>
+		<select id="numOfPlayers" onchange="changeForm();">
+		  <option value="3" data-localize="num_3">3</option>
+		  <option value="4" data-localize="num_4">4</option>
+		  <option value="5" data-localize="num_5">5</option>
+		  <option value="6" data-localize="num_6">6</option>
+		  <option value="7" data-localize="num_7">7</option>
+		  <option value="8" data-localize="num_8">8</option>
+		  <option value="9" data-localize="num_9">9</option>
+		  <option value="10" data-localize="num_10">10</option>
+		</select></div>
+		<div class="boxes">
+		<input type="text" name="pName0" data-localize="player_name num_1" placeholder="Player Name 1"><br>
+		<input type="text" name="pName1" data-localize="player_name num_2" placeholder="Player Name 2"><br>
+		<input type="text" name="pName2" data-localize="player_name num_3" placeholder="Player Name 3"><br>
+		<input type="text" name="pName3" data-localize="player_name num_4" placeholder="Player Name 4" style="display:none"><br>
+		<input type="text" name="pName4" data-localize="player_name num_5" placeholder="Player Name 5" style="display:none"><br>
+		<input type="text" name="pName5" data-localize="player_name num_6" placeholder="Player Name 6" style="display:none"><br>
+		<input type="text" name="pName6" data-localize="player_name num_7" placeholder="Player Name 7" style="display:none"><br>
+		<input type="text" name="pName7" data-localize="player_name num_8" placeholder="Player Name 8" style="display:none"><br>
+		<input type="text" name="pName8" data-localize="player_name num_9" placeholder="Player Name 9" style="display:none"><br>
+		<input type="text" name="pName9" data-localize="player_name num_10" placeholder="Player Name 10" style="display:none"><br></div>
+		<div class="startgame"><button onclick="startGame();" data-localize="start_game">Start Game</button></div>
+		<div class="howPlay" href="#"><a onclick="howTo();" data-localize="how_do_i_play">How do I play?</a></div>
+	</div>
+
+	<div id="HowTo" class="flex-container" style="display:none; padding-top: 50px">
+		<div class="title"><h1><span data-localize="app_welcome">Welcome to </span><br><span data-localize="app_name">FUNemployed</span></h1></div>
+		<div class="paragraph"><span data-localize="game_rules"><h5>The first player is chosen to start the game as the Employer. Everyone else starts as an Applicant.
+			The Applicants get 4 qualifications each. <br><br>
+
+			Starting to the left of the Employer, each Applicant “interviews” by explaining why their qualifications make
+			them the best fit for the Job. Applicants reveal their qualifications to the Employer, one at a time, and
+			describe how each one makes them qualified for the Job. Because these qualifications are chosen at random and not revealed
+			to the player until they are chosen, the applicants have to think on their feet. <br><br>
+
+			After all Applicants have had a turn, the Employer chooses which Applicant they feel is the most qualified and
+			the Applicant gets a point. A new employer is chosen and the cycle begins again.</h5></span></div>
+			<div class="goback"><button onclick="goBack();">Go Back</button></div>
+	</div>
+
+
+	<div id="GamePage" style="display:none; padding-top: 50px">
+		<h1>Employer: Player3</h1>
+		<h2>Wanted: Janitor</h2>
+		<br>
+		<div id="timer">
+			<div class="timer-container">
+			  <div class="setters">
+			    <div class="minutes-set">
+			      <button data-setter="minutes-plus">+</button>
+			      <button data-setter="minutes-minus">-</button>
+			    </div>
+			    <div class="seconds-set">
+			      <button data-setter="seconds-plus">+</button>
+			      <button data-setter="seconds-minus">-</button>
+			    </div>
+			  </div>
+			  <div class="circle"> <svg width="300" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+			    <g transform="translate(110,110)">
+			      <circle r="100" class="e-c-base"/>
+			      <g transform="rotate(-90)">
+			        <circle r="100" class="e-c-progress"/>
+			        <g id="e-pointer">
+			          <circle cx="100" cy="0" r="8" class="e-c-pointer"/>
+			        </g>
+			      </g>
+			    </g>
+			    </svg> </div>
+			  <div class="controlls">
+			    <div class="display-remain-time">00:30</div>
+			    <button class="play" id="pause"></button>
+			  </div>
+				<button class="reset" id="reset" data-reset="reset-time" data-localize="reset">Reset</button>
+				<audio id="ding-ding">
+				  <source src="sounds/ding.mp3" type="audio/mpeg">
+				</audio>
+			</div>
+			<script>
+			//circle start
+			let progressBar = document.querySelector('.e-c-progress');
+			let indicator = document.getElementById('e-indicator');
+			let pointer = document.getElementById('e-pointer');
+			let length = Math.PI * 2 * 100;
+
+			progressBar.style.strokeDasharray = length;
+
+			function update(value, timePercent) {
+				if (value < 0) {
+					value = 0;
+				}
+				console.log("Val: " + value +" Percent: " + timePercent);
+				var offset = - length - length * value / (timePercent);
+				progressBar.style.strokeDashoffset = offset; 
+				pointer.style.transform = `rotate(${360 * value / (timePercent)}deg)`; 
+			};
+
+			//circle ends
+			const displayOutput = document.querySelector('.display-remain-time')
+			const pauseBtn = document.getElementById('pause');
+			const setterBtns = document.querySelectorAll('button[data-setter]');
+			const resetBtn = document.getElementById('reset');
+			const dingDing = document.getElementById('ding-ding');
+
+			let intervalTimer;
+			let timeLeft;
+			let wholeTime = 1.5 * 60; // manage this to set the whole time 
+			let isPaused = false;
+			let isStarted = false;
+
+
+			update(wholeTime,wholeTime); //refreshes progress bar
+			displayTimeLeft(wholeTime);
+
+			function changeWholeTime(seconds){
+			  if ((wholeTime + seconds) > 0){
+			    wholeTime += seconds;
+			    update(wholeTime,wholeTime);
+			  }
+			}
+			
+			function resetTimer(){
+			  if (isStarted && !isPaused){				
+					pauseBtn.click();
+				}
+				console.log("Resetting timer: "+wholeTime+" seconds. isStarted = "+isStarted);
+				update(wholeTime,wholeTime);
+				timeLeft = wholeTime;
+				displayTimeLeft(timeLeft);
+	      return ;
+			}
+
+			for (var i = 0; i < setterBtns.length; i++) {
+			    setterBtns[i].addEventListener("click", function(event) {
+			        var param = this.dataset.setter;
+			        switch (param) {
+			            case 'minutes-plus':
+			                changeWholeTime(1 * 60);
+											update(wholeTime,wholeTime);
+											timeLeft = wholeTime;
+											displayTimeLeft(timeLeft);
+			                break;
+			            case 'minutes-minus':
+			                changeWholeTime(-1 * 60);
+											update(wholeTime,wholeTime);
+											timeLeft = wholeTime;
+											displayTimeLeft(timeLeft);
+			                break;
+			            case 'seconds-plus':
+			                changeWholeTime(5);
+											update(wholeTime,wholeTime);
+											timeLeft = wholeTime;
+											displayTimeLeft(timeLeft);
+			                break;
+			            case 'seconds-minus':
+			                changeWholeTime(-5);
+											update(wholeTime,wholeTime);
+											timeLeft = wholeTime;
+											displayTimeLeft(timeLeft);
+			                break;
+			        }
+			      displayTimeLeft(wholeTime);
+			    });
+			}
+
+			function timer (seconds){ //counts time, takes seconds
+			  let remainTime = Date.now() + (seconds * 1000);
+			  displayTimeLeft(seconds);
+  
+			  intervalTimer = setInterval(function(){
+			    timeLeft = Math.round((remainTime - Date.now()) / 1000);
+			    if(timeLeft < 0){
+						console.log("Time is up!");
+						
+						var noOfRepetitions = 3;
+
+						myAudio = new Audio('sounds/ding.wav');
+
+						myAudio.addEventListener('ended', function() {
+						            noOfRepetitions = noOfRepetitions-1;
+						            if (noOfRepetitions > 0) {
+						                this.currentTime = 0;
+						                this.play()};
+						}, false);
+
+						myAudio.play();
+						
+						resetTimer();
+			    }
+			    displayTimeLeft(timeLeft);
+			  }, 1000);
+			}
+			
+			function pauseTimer(event){
+			  if (isStarted === false){
+			    timer(wholeTime);
+			    isStarted = true;
+			    this.classList.remove('play');
+			    this.classList.add('pause');
+    
+			    setterBtns.forEach(function(btn){
+			      btn.disabled = true;
+			      btn.style.opacity = 0.5;
+			    });
+			  } else if (isPaused){
+			    this.classList.remove('play');
+			    this.classList.add('pause');
+			    timer(timeLeft);
+			    isPaused = isPaused ? false : true
+			    setterBtns.forEach(function(btn){
+			      btn.disabled = true;
+			      btn.style.opacity = 0.5;
+			    });
+			  } else {
+			    this.classList.remove('pause');
+			    this.classList.add('play');
+			    clearInterval(intervalTimer);
+			    isPaused = isPaused ? false : true ;
+			    setterBtns.forEach(function(btn){
+			      btn.disabled = false;
+			      btn.style.opacity = 1;
+			    });
+			  }
+			}
+
+			function displayTimeLeft (timeLeft){ //displays time on the input
+			  let minutes = Math.floor(timeLeft / 60);
+			  let seconds = timeLeft % 60;
+				
+				if (minutes < 0) {
+					minutes = 0;
+				}
+				if (seconds < 0) {
+					seconds = 0;
+				}
+			  let displayString = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+			  displayOutput.textContent = displayString;
+			  update(timeLeft, wholeTime);
+			}
+
+			pauseBtn.addEventListener('click',pauseTimer);
+			resetBtn.addEventListener('click',resetTimer);
+
+			</script>
+		</div>
+		
+		<br>
+		<div id="currentQuals">
+			<h3 data-localize="player_name">Player Name</h3>
+			<h2 data-localize="qualification">Qualification</h2>			
+			<button onclick="nextQual();" data-localize="next_qualification">Next Qualification</button>
+			<h4 data-localize="quals">Quals</h4>
+		</div>
+		<div id="pickWinner" style="display: none">
+			<h2 data-localize="who_is_new_employee">Who's Your New Employee?</h2>
+		</div>
+
+		<br><br>
+		<div id="pastQuals">
+		<span data-localize="past_quals">Our Interviewees' Qualifications</span>
+			<table>
+				
+			</table>
+		</div>
+	</div>
+
+
+	<div id="ScorePage" style="display:none; padding-top: 50px">
+		<h1>Player 1 is the New Janitor!</h1>
+		<h2><u data-localize="current_scores">Current Scores</u></h2>
+		<button onclick="nextRound();" data-localize="next_round">Next Round</button><button onclick="endGame();" data-localize="end_game">End Game</button>
+	</div>
+
+
+</div>
+
+<!-- Scripts and Junk -->
+<script src="javascript/strings.js"></script>
+<script src="javascript/vars.js"></script>
+<script src="javascript/script.js"></script>
+</body>
+
+</html>
