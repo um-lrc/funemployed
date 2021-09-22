@@ -1,22 +1,22 @@
 var textDir = "ltr"; // LTR or RTL
 
 var gameRules = `
-			<h5>The first player is chosen to start the game as the Employer. Everyone else starts as an Applicant.
-			The Applicants get 4 qualifications each. <br><br>
+			The first player is chosen to start the game as the Buyer. Everyone else starts as a potential Supplier.
+			The Suppliers get 4 qualifications each.
 
-			Starting to the left of the Employer, each Applicant “interviews” by explaining why their qualifications make
-			them the best fit for the Job. Applicants reveal their qualifications to the Employer, one at a time, and
-			describe how each one makes them qualified for the Job. Because these qualifications are chosen at random and not revealed
-			to the player until they are chosen, the applicants have to think on their feet. <br><br>
+			Starting from the left of the Buyer, each Supplier “interviews” by explaining why their qualifications make
+			them the best supply source for the item the Buyer is sourcing. Suppliers reveal their qualifications to the Buyer, one at a time, and
+			describe how each one makes them qualified for supplying the item that the Buyer is sourcing. Because these qualifications are chosen at random and not revealed
+			to the player until they are chosen, the supplier representatives have to think on their feet.
 
-			After all Applicants have had a turn, the Employer chooses which Applicant they feel is the most qualified and
-			the Applicant gets a point. A new employer is chosen and the cycle begins again.</h5>
+			After all Suppliers have had a turn, the Buyer chooses which Supplier they feel is the most qualified and
+			the Supplier gets a point. A new Buyer is chosen and the cycle begins again.
 `;
 
 var strings = {
 	app_welcome: "Welcome to ",
-	app_name: "FUNemployed",
-	player_count: "How many players?",
+	app_name: "FunSourcing",
+	player_count: "How many players? (recommended: 4 or more)",
 	num_1: "1",
 	num_2: "2",
 	num_3: "3",
@@ -27,26 +27,26 @@ var strings = {
 	num_8: "8",
 	num_9: "9",
 	num_10: "10",
-	player: "Player",
-	player_name: "Player Name ",
+	player: "Potential Supplier",
+	player_name: "Company Name ",
 	start_game: "Start the Game!",
 	how_do_i_play: "How do I play?",
-	game_rules: $.parseHTML(gameRules),
-	applicant: "Applicant",
+	game_rules: gameRules,
+	applicant: "Potential Supplier",
 	qualification: "Qualifications",
-	employer: "Employer",
-	next_qualification: "Next Qualification",
-	quals: "Quals",
-	who_is_new_employee: "Who's Your New Employee?",
-	past_quals: "Our Interviewees' Qualifications",
-	player_won: "Player 1 is the New Janitor!",
+	employer: "Buyer",
+	next_qualification: "Additional information",
+	quals: "Spec.",
+	who_is_new_employee: "Who's Your New Supplier?",
+	past_quals: "Supplier Qualifications",
+	player_won: "Player 1 is the New Supplier!",
 	next_round: "Next Round",
 	end_game: "End this Game",
 	wanted: "Wanted",
-	next_applicant: "Next Applicant",
+	next_applicant: "Next Potential Supplier",
 	next_qualification: "Next Qualification",
-	is_the_new: " is the new ",
-	current_scores: "The Score",
+	is_the_new: " received the bid for the following: ",
+	current_scores: "Number of Contracts Won",
 	reset: "Reset Timer"
 };
 

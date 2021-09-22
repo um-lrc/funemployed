@@ -52,6 +52,7 @@ function roundStart(){ //Sets up the html
 	$("#GamePage h2:first").html( strings["wanted"] + ": <strong>" + getJob() + "</strong>");
 
 	var table = $("#pastQuals table");
+	table.append("<tr><th><b>Supplier</b></th><th><b>Quantity Discount</b></th><th><b>Performance</b></th><th><b>Relationship Orientation</b></th><th><b>Other</b></th></tr>");
 	for(i=0;i<numPlayers;i++){
 		if (i==currentBoss){
 			continue;
@@ -65,7 +66,7 @@ function roundStart(){ //Sets up the html
 		$("#currentQuals h3").text( strings["applicant"] + ": " + pName(0));
 	}
 
-	$("#currentQuals h2").text(getQual());
+	$("#currentQuals h2").text(getQual(0));
 	qualCounter = 1;
 	$("#currentQuals h4").text("");
 }
@@ -74,7 +75,7 @@ function nextQual(){ //Runs on "Next Qualification" click
 	if(qualCounter != 0){ //Show on previous qualifications
 		$("#currentQuals h4").append(" | " + $("#currentQuals h2").text());
 	}
-	$("#currentQuals h2").text(getQual()); //get next qual
+	$("#currentQuals h2").text(getQual(qualCounter)); //get next qual
 	qualCounter++;
 	if(qualCounter == 4){ //If the number of qualifications is reached, change to next employee
 		var button = $("#currentQuals button");
@@ -86,7 +87,9 @@ function nextQual(){ //Runs on "Next Qualification" click
 function nextApplicant(){ //Runs on "Next Employee" click
 	//Stores Applicant's qualifications in table
 	var temp_quals = $("#currentQuals h4").text().split(" | "); //array of current Applicant's quals
+	currentPlayer++;
 	var table_row = $("#pastQuals table tr:nth-child(" + currentPlayer + ")"); //get table row
+	currentPlayer--;
 	for(i=1;i<temp_quals.length;i++){ //insert qualifications one by one into table row
 		table_row.append("<td>"+temp_quals[i]+"</td>");
 	}
@@ -136,7 +139,6 @@ function pickedWinner(winner){ //Runs when a winner is picked
 	//Displays winner text
 	var string = winner + strings["is_the_new"];
 	string+=$("#GamePage h2:first").text().slice(7);
-	string+="!";
 	$("#ScorePage h1").text(string);
 	//Increments Score
 	scores[winner]++;
